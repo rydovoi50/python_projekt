@@ -42,4 +42,4 @@ def lucky_ticket(a):  # по PEP8 должно быть две пустые ст
 
 print(lucky_ticket(123322))  # print(lucky_ticket(123322)) следи за пробелами
 print('kjsdhgdfklosg')
-print('тря ля ля kz kz kz')
+print('тря ля ля kz kz kz 123')
