@@ -8,6 +8,7 @@
     <orderEntry type="module" module-name="lesson02" />
     <orderEntry type="module" module-name="lesson03" />
     <orderEntry type="module" module-name="lesson04" />
+    <orderEntry type="module" module-name="examples" />
   </component>
   <component name="TestRunnerService">
     <option name="PROJECT_TEST_RUNNER" value="Unittests" />
