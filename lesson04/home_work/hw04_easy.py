@@ -33,7 +33,5 @@ lst1 = [random.randint(-10, 100) for _ in range(10)]
 print('lst1 = ', lst1)
 lst2 = [i for i in lst1 if i % 3 == 0 if i > 0 if i % 4 !=0]
 print('lst2 = ', lst2)
-print('lst2 = ', lst2)
-
 
 
