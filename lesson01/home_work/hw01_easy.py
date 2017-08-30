@@ -30,3 +30,4 @@ elif age > 110:
     print ('Вы лгун')
 elif age >= 18:
     print( 'Доступ разрешен')
+print("Привет")
