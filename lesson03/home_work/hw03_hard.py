@@ -39,3 +39,4 @@ for line in f:
 # Подсказка:
 # Чтобы получить список больших букв русского алфавита:
 # print(list(map(chr, range(ord('А'), ord('Я')+1))))
+print('hello')
