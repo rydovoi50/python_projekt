@@ -9,4 +9,4 @@ print(r"Hello \t world")
 # # \n - перенос троки
 # # \r - возврат каретки
 #
-print("Hello \r world")
+print("Hello \rworld")

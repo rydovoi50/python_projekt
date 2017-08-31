@@ -20,13 +20,21 @@
 
 import os
 
-path = os.path.join('G:/Courses/Python. Уровень1/Урок 3 (Функции и работа с файлами)/lesson03/home_work/data/', 'workers')
-f = open(path, 'r', encoding='UTF-8')
-wanted_symbol = '+'
-for line in f:
-    if wanted_symbol in line:
-	    print(line)
-	    break
+path = os.path.join('D:\Courses\python_projekt\lesson03\home_work\data', 'workers')
+# f = open(path, 'r', encoding='utf-8')
+# wanted_symbol = '+'
+# for line in f:
+#     # if wanted_symbol in line:
+#     print(line)
+# f.close()
+
+with open('1.jpg', 'rb') as k:
+    s = k.read()
+
+    print(s)
+
+
+
 # Задание-3:
 # Дан файл ("data/fruits") со списком фруктов.
 # Записать в новые файлы все фрукты, начинающиеся с определенной буквы.
