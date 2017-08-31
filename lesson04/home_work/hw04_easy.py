@@ -35,3 +35,4 @@ lst2 = [i for i in lst1 if i % 3 == 0 if i > 0 if i % 4 !=0]
 print('lst2 = ', lst2)
 
 
+
