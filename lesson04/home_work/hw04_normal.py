@@ -67,5 +67,5 @@ pattern_2 = '[a-z]{2}([A-Z]+)[A-Z]{2}'
 import random
 number = ''.join([random.choice(list('1234567890')) for _ in range(2500)])
 print(number)
-pattern_3 = '8+[^ ]'
+pattern_3 = ''
 print(re.findall(pattern_3, number))
