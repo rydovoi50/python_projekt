@@ -22,10 +22,22 @@ line = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysmNO'\
        'XiUWgsKQrDOeZoNlZNRvHnLgCmysUeKnVJXPFIzvdDyleXylnKBfLCjLHntltignbQoiQ'\
        'zTYwZAiRwycdlHfyHNGmkNqSwXUrxGc'
 pattern = '[a-z]*[^A-Z]'
-# print(re.findall(pattern, line))
+print(re.findall(pattern, line))
 
-line1 = [i for i in line if i != 'M']
-# print(line1)
+print('*' * 100)
+
+line_lst = []
+line_str = ''
+for i in line:
+    if i.islower():
+        line_str += i
+    else:
+        if line_str != '':
+            line_lst.append(line_str)
+            line_str = ''
+
+print(line_lst)
+
 
 # Задание-2:
 # Вывести символы в верхнем регистре, слева от которых находятся
@@ -53,7 +65,7 @@ line_2 = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysm'\
 
 
 pattern_2 = '[a-z]{2}([A-Z]+)[A-Z]{2}'
-# print(re.findall(pattern_2, line_2))
+print(re.findall(pattern_2, line_2))
 
 
 # Задание-3:
@@ -64,8 +76,8 @@ pattern_2 = '[a-z]{2}([A-Z]+)[A-Z]{2}'
 # в вышезаполненном файле.
 
 
-import random
-number = ''.join([random.choice(list('1234567890')) for _ in range(2500)])
-print(number)
-pattern_3 = ''
-print(re.findall(pattern_3, number))
+# import random
+# number = ''.join([random.choice(list('1234567890')) for _ in range(2500)])
+# print(number)
+# pattern_3 = '[^ ]'
+# print(re.findall(pattern_3, number))

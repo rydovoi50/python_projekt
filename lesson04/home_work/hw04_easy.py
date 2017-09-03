@@ -19,8 +19,10 @@ print('lst2 = ', lst2)
 # Получить список фруктов, присутствующих в обоих исходных списках.
 fruit1 = ['яблоко', 'груша', 'киви', 'банан', 'апельсин', 'манго', 'персик']
 fruit2 = ['абрикос', 'персик', 'банан', 'мандарин', 'гранат', 'груша']
-fruit3 = [el1 for el1 in fruit1 for el2 in fruit2 if el1 == el2]
+fruit3 = [el1 for el1 in fruit1 for el2 in fruit2 if el1 == el2]    #Первый способ решения
+fruit4 = [el for el in fruit1 if el in fruit2]                      #Второй способ решения
 print(fruit3)
+print(fruit4)
 
 # Задание-3:
 # Дан список, заполненный произвольными числами.
@@ -31,7 +33,7 @@ print(fruit3)
 
 lst1 = [random.randint(-10, 100) for _ in range(10)]
 print('lst1 = ', lst1)
-lst2 = [i for i in lst1 if i % 3 == 0 if i > 0 if i % 4 !=0]
+lst2 = [i for i in lst1 if i % 3 == 0 and i > 0 and i % 4 !=0]
 print('lst2 = ', lst2)
 
 
