@@ -83,22 +83,24 @@ for i in line_2:
     if i.islower():  #and not two_lower_char:
         lower_char += i
         two_lower_char = False
+        if upper_char != '':
+            line_lst.append(upper_char[:-2])
         upper_char = ''
-        if len(lower_char) == 2:
+        if len(lower_char) >= 2:
             two_lower_char = True
-            lower_char = ''
+            # print(lower_char)
+            # lower_char = ''
     elif i.isupper():
         lower_char = ''
         if two_lower_char:
             upper_char += i
             lower_char = ''
-            if len(upper_char) > 2:
+            if len(upper_char) >= 3:
                 print(upper_char[:-2])
-                two_lower_char = False
-                upper_char = ''
-
-
-        # break
+                # two_lower_char = False
+                # upper_char = ''
+    print(line_lst)
+                # break
 
 
 
