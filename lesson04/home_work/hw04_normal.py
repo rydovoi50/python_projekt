@@ -25,7 +25,7 @@ line = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysmNO' \
 
 print('*' * 50, 'Задание - 1', '*' * 50)
 pattern = '[a-z]*[^A-Z]'
-print(re.findall(pattern, line))
+# print(re.findall(pattern, line))
 
 print('*' * 150)
 
@@ -34,11 +34,15 @@ line_str = ''
 for i in line:
     if i.islower():
         line_str += i
+        if line[-1] == i:
+            line_lst.append(line_str)
     else:
         if line_str != '':
             line_lst.append(line_str)
             line_str = ''
-print(line_lst)
+# if line_str:
+#     line_lst.append(line_str)
+# print(line_lst)
 
 
 # Задание-2:
@@ -65,16 +69,37 @@ line_2 = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysm' \
          'JFaXiUWgsKQrDOeZoNlZNRvHnLgCmysUeKnVJXPFIzvdDyleXylnKBfLCjLHntltignbQ' \
          'oiQzTYwZAiRwycdlHfyHNGmkNqSwXUrxGC'
 
-print('*' * 50, 'Задание - 2', '*' * 50)
-pattern_2 = '[a-z]{2}([A-Z]+)[A-Z]{2}'
-print(re.findall(pattern_2, line_2))
-print('*' * 150)
-# line_str = ''
-# line_lst = []
-# for i in line_2:
-#     if i.isupper():
-#         line_str += i
-#     else:
+# print('*' * 50, 'Задание - 2', '*' * 50)
+# pattern_2 = '[a-z]{2}([A-Z]+)[A-Z]{2}'
+# print(re.findall(pattern_2, line_2))
+# print('*' * 150)
+line_lst = []
+line_str = ''
+lower_char = ''
+upper_char = ''
+# one_upper_char = False
+two_lower_char = False
+for i in line_2:
+    if i.islower():  #and not two_lower_char:
+        lower_char += i
+        two_lower_char = False
+        upper_char = ''
+        if len(lower_char) == 2:
+            two_lower_char = True
+            lower_char = ''
+    elif i.isupper():
+        lower_char = ''
+        if two_lower_char:
+            upper_char += i
+            lower_char = ''
+            if len(upper_char) > 2:
+                print(upper_char[:-2])
+                two_lower_char = False
+                upper_char = ''
+
+
+        # break
+
 
 
 # Задание-3:
@@ -89,11 +114,12 @@ import random
 with open('number.txt', 'w', encoding='UTF-8') as a:
     a.write(''.join([random.choice(list('1234567890')) for _ in range(2500)]))
 result = re.compile('0{2,}|1{2,}|2{2,}|3{2,}|4{2,}|5{2,}|6{2,}|7{2,}|8{2,}|9{2,}')
+# print(result)
 
-with open('number.txt','r', encoding='UTF-8') as a:
+with open('number.txt', 'r', encoding='UTF-8') as a:
     number = a.read()
 result_1 = result.findall(number)
 tmp = max(len(i) for i in result_1)
-print(tmp)
+# print(tmp)
 end = [i for i in result_1 if len(i) == tmp]
-print(end)
+# print(end)
