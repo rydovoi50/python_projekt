@@ -69,11 +69,12 @@ line_2 = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysm' \
          'JFaXiUWgsKQrDOeZoNlZNRvHnLgCmysUeKnVJXPFIzvdDyleXylnKBfLCjLHntltignbQ' \
          'oiQzTYwZAiRwycdlHfyHNGmkNqSwXUrxGC'
 
-# print('*' * 50, 'Задание - 2', '*' * 50)
-# pattern_2 = '[a-z]{2}([A-Z]+)[A-Z]{2}'
-# print(re.findall(pattern_2, line_2))
-# print('*' * 150)
+print('*' * 50, 'Задание - 2', '*' * 50)
+pattern_2 = '[a-z]{2}([A-Z]+)[A-Z]{2}'
+print(re.findall(pattern_2, line_2))
+print('*' * 150)
 line_lst = []
+line_lst2 = []
 line_str = ''
 lower_char = ''
 upper_char = ''
@@ -83,23 +84,26 @@ for i in line_2:
     if i.islower():  #and not two_lower_char:
         lower_char += i
         two_lower_char = False
-        if upper_char != '':
+        if upper_char != '':            #Почему то все равно добавляет пустые строки убрал их ниже и если даже оставить пустые строки,последняя буква все равно не добавляется
             line_lst.append(upper_char[:-2])
-        upper_char = ''
+            upper_char = ''
+        # upper_char = ''
         if len(lower_char) >= 2:
             two_lower_char = True
-            # print(lower_char)
             # lower_char = ''
     elif i.isupper():
         lower_char = ''
         if two_lower_char:
             upper_char += i
             lower_char = ''
-            if len(upper_char) >= 3:
-                print(upper_char[:-2])
+            # if len(upper_char) >= 3:
+                # print(upper_char[:-2])
                 # two_lower_char = False
                 # upper_char = ''
-    print(line_lst)
+for _ in line_lst:                  #Этот цикл создал для того что бы удалить все пустые строки
+    if _ != '':
+        line_lst2.append(_)
+print(line_lst2)
                 # break
 
 
