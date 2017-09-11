@@ -5,19 +5,23 @@
 
 
 import os
-def create_a_folder():
-    for i in range(1, 10):
+
+
+def create_a_folder(count):
+    for i in range(1, count):
         try:
             os.mkdir('dir_' + str(i))
         except FileExistsError:
             print('Папка {} в директории {} уже существует'.format('dir_' + str(i), os.getcwd()))
 
-def delete_folder():
-    for i in range(1, 10):
+
+def delete_folder(count):
+    for i in range(1, count):
         os.rmdir('dir_' + str(i))
 
 # Задача-2:
 # Напишите скрипт, отображающий папки текущей директории.
+
 
 
 def list():
@@ -25,6 +29,8 @@ def list():
 
 # Задача-3:
 # Напишите скрипт, создающий копию файла, из которого запущен данный скрипт.
+
+
 
 def cope_file():
     with open('hw05_easy.py', 'r', encoding='UTF-8') as hw:
@@ -34,9 +40,10 @@ def cope_file():
 
 
 list()
-create_a_folder()
+create_a_folder(10)
 list()
-delete_folder()
+delete_folder(10)
 list()
 cope_file()
 list()
+input()

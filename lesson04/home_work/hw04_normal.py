@@ -106,6 +106,10 @@ for _ in line_lst:                  #Этот цикл создал для то�
 print(line_lst2)
                 # break
 
+import lesson04.re_my_version as my_re
+
+print(my_re.re_my(line_2))
+
 
 
 # Задание-3:

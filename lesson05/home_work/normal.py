@@ -14,6 +14,7 @@ while True:
         name = input('Введите имя папки в которую хотите перейти: ')
         try:
             os.chdir(name)
+            name = os.getcwd()
             print('Вы успешно перешли в \'{}\''.format(name))
         except FileNotFoundError:
             print('Папки \'{}\' не существует'.format(name))

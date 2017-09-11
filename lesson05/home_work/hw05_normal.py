@@ -13,27 +13,33 @@
 
 import os
 import sys
-import libs.new_hw05_easy as HW
+# import new as hw
+sys.path.insert(0, '../../lesson03/home_work')
+# import lesson03.home_work.new as hw
+print(sys.path)
 
-while True:
-    user = input('1. Перейти в папку\n'
-                 '2. Просмотреть содержимое текущей папки\n'
-                 '3. Удалить папку\n'
-                 '4. Создать папку\n'
-                 'Введите "q" для выхода\n')
-    # def list():
-    if user == '2':
-        print(HW.list())
 
-    elif user == '3':
-        print(HW.create_a_folder())
-
-    # def mk_dir():
-    elif user == '4':
-        print(HW.delete_folder())
-
-    elif user == 'q':
-        sys.exit()
+# while True:
+#     user = input('1. Перейти в папку\n'
+#                  '2. Просмотреть содержимое текущей папки\n'
+#                  '3. Удалить папку\n'
+#                  '4. Создать папку\n'
+#                  'Введите "q" для выхода\n')
+#     if user == '1':
+#         print(hw.ch_dir())
+#     # def list():
+#     if user == '2':
+#         print(hw.list())
+#
+#     elif user == '3':
+#         print(hw.rm_dir())
+#
+#     # def mk_dir():
+#     elif user == '4':
+#         print(hw.mk_dir())
+#
+#     elif user == 'q':
+#         sys.exit()
 
 # Для решения данной задачи используйте алгоритмы из задания easy,
 # оформленные в виде соответствующих функций,
