@@ -14,7 +14,7 @@
 # Так можно посмотреть список текущих путей поиска:
 import sys
 
-print(sys.path)
+print('sys.path = ', sys.path)
 
 import lesson05.examples.my_libs.lib1 as lib1
 print(lib1.do_something())
