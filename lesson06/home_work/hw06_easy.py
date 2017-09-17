@@ -59,24 +59,26 @@ class Trapezoid:
         self.b = b
         self.c = c
         self.d = d
+        self.ac = None
+        self.cd = None
 
 
     @property
     def check(self):
-        c = ((self.a[0] - self.b[0]) ** 2 + (self.a[1] - self.b[1]) ** 2) ** 0.5
-        d = ((self.c[0] - self.d[0]) ** 2 + (self.c[1] - self.d[1]) ** 2) ** 0.5
+        self.ac = ((self.a[0] - self.b[0]) ** 2 + (self.a[1] - self.b[1]) ** 2) ** 0.5
+        self.cd = ((self.c[0] - self.d[0]) ** 2 + (self.c[1] - self.d[1]) ** 2) ** 0.5
         ac = ((self.a[0] - self.c[0]) ** 2 + (self.a[1] - self.c[1]) ** 2) ** 0.5
         bd = ((self.b[0] - self.d[0]) ** 2 + (self.b[1] - self.d[1]) ** 2) ** 0.5
-        return c == d and ac == bd
+        return self.ac == self.cd and ac == bd
 
 
     @property
     def side(self):
         c = ((self.a[0] - self.b[0]) ** 2 + (self.a[1] - self.b[1]) ** 2) ** 0.5
-        a = ((self.b[0] - self.c[0]) ** 2 + (self.b[1] - self.c[1]) ** 2) ** 0.5
-        d = ((self.c[0] - self.d[0]) ** 2 + (self.c[1] - self.d[1]) ** 2) ** 0.5
+        # a = ((self.b[0] - self.c[0]) ** 2 + (self.b[1] - self.c[1]) ** 2) ** 0.5
+        # d = ((self.c[0] - self.d[0]) ** 2 + (self.c[1] - self.d[1]) ** 2) ** 0.5
         b = ((self.d[0] - self.a[0]) ** 2 + (self.d[1] - self.a[1]) ** 2) ** 0.5
-        return c, d, a, b
+        return c, self.cd, self.ac, b
 
 
     @property
