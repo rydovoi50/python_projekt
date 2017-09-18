@@ -29,30 +29,21 @@ class People:
 
 
 class School:
-
-    subject = {'Математика': 'Пермякова',
-               'Русский язык': 'Петров',
-               'Литература': 'Языкова',
-               'Алгебра': 'Форсункина',
-               'Физ-ра': 'Данилин',
-               'ОБЖ': 'Черпаков'}
-
-    def __init__(self, classroom):
+    def __init__(self, classroom, subject):
         self.classroom = classroom
+        self.subject = subject
         # self.subject = subject
 
-
     # @property
-    # def wal(self):
-    #     for i in students:
-    #         if self.classroom == i:
-    #             return i
+    def full_clas(self):
+        full = self.classroom.keys()
+        return full
 
 
 class Student(People, School):
     def __init__(self, surname, name, middle_name, date_of_birth, mama, papa, classroom, subject):
         People.__init__(self, surname, name, middle_name, date_of_birth)
-        School.__init__(self, subject)
+        School.__init__(self, subject, classroom)
         self.mama = mama
         self.papa = papa
         self.name = name
@@ -60,70 +51,87 @@ class Student(People, School):
         self.dob = date_of_birth
         self.classroom = classroom
 
-    @property
     def full_name(self):
         return self.surname + ' ' + self.name[0] + '. ' + self.middle_name[0] + '. '
+
+    def sub(self):
+        name = self.surname + ' ' + self.name[0] + '. ' + self.middle_name[0] + '. '
+        return name + ' ' + self.subject
+
+    def cl_st(self, _):
+        if _ == self.classroom:
+            print('В \'{}\' классе учится {}'.format(_, Student.full_name))
 
 
 class Teacher(People, School):
     def __init__(self, surname, name, middle_name, date_of_birth, classroom, subject):
         People.__init__(self, surname, name, middle_name, date_of_birth)
-        School.__init__(self, classroom)
-        self.subject = subject
+        School.__init__(self, classroom, subject)
+        # self.subject = subject
 
-    # def add_classroom(self, ):
+        # def add_classroom(self, ):
 
 
-sub = {
-    '5 А': "Математика, Русский язык, Литература",
-    '6 Б': "Математика. Алгебра",
-    '7 В': "ОБЖ, Физ-ра, Литература",
-    '8 А': "Математика, Адгебра, ОБЖ",
-    '9 А': "Литература, Математика",
-    '10 А': "Физ-ра, Русский язык"
-}
+classroom = {'5 А': "Математика, Русский язык, Литература",
+             '6 A': "Математика. Алгебра",
+             '7 A': "ОБЖ, Физ-ра, Литература",
+             '8 А': "Математика, Адгебра, ОБЖ",
+             '9 А': "Литература, Математика",
+             '10 А': "Физ-ра, Русский язык"}
+
+subject = {'Математика': 'Пермякова',
+           'Русский язык': 'Петров',
+           'Литература': 'Языкова',
+           'Алгебра': 'Форсункина',
+           'Физ-ра': 'Данилин',
+           'ОБЖ': 'Черпаков'}
+
+"""Все для класса Student"""
 
 students = [Student('Иванов', 'Иван', 'Иванович', '20.02.2003', 'Иванова Зинаида Петровна', 'Иванов Иван Петрович',
-                    '5 А', sub['5 А']),
+                    '5 А', classroom['5 А']),
             Student('Забулдыгин', 'Фёдор', 'Павлович', '14.01.2004', 'Забулдыгина Вера Аристарховна',
-                    'Забулдыгин Павел Валерьевич', '5 А', sub['5 А']),
+                    'Забулдыгин Павел Валерьевич', '5 А', classroom['5 А']),
             Student('Пипеткина', 'Ксения', 'Александровна', '25.07.2003', 'Пипеткина Галина Павловна',
-                    'Пипеткин Александр Валентинович', '6 Б', sub['6 Б']),
+                    'Пипеткин Александр Валентинович', '6 A', classroom['6 A']),
             Student('Верещагин', 'Дмитрий', 'Алексеевич', '01.01.2003', 'Верещагина Наталья Андреевна',
-                    'Верещагин Алексей Петрович', '6 Б', sub['6 Б']),
+                    'Верещагин Алексей Петрович', '6 A', classroom['6 A']),
             Student('Антонов', 'Анатолий', 'Аникеевич', '17.10.2003', 'Антонова Галина Владимировна',
-                    'Антонов Аникей Львович', '8 А', sub['8 А']),
+                    'Антонов Аникей Львович', '8 А', classroom['8 А']),
             Student('Москвин', 'Владимир', 'Анатольевич', '05.01.2002', 'Москвина Вероника Антоновна',
-                    'Москвин Анатолий Сергеевич', '7 В', sub['7 В']),
+                    'Москвин Анатолий Сергеевич', '7 A', classroom['7 A']),
             Student('Рожкова', 'Инна', 'Александровна', '01.01.2002', 'Рожкова Анастасия Артуровна',
-                    'Рожков Александр Александрович', '9 А', sub['9 А']),
+                    'Рожков Александр Александрович', '9 А', classroom['9 А']),
             Student('Лисина', 'Анжела', 'Ивановна', '30.12.2002', 'Лисина Нелля Вадимовна',
-                    'Лисин Иван Каримович', '10 А', sub['10 А']),
+                    'Лисин Иван Каримович', '10 А', classroom['10 А']),
             ]
 
-teachers = [Teacher('Пермякова', 'Валентина', 'Петровна', '13.12.1975', '5 А, 6 Б, 8 А, 9 А', 'Математика'),
+
+"""Все для класса Teacher"""
+
+teachers = [Teacher('Пермякова', 'Валентина', 'Петровна', '13.12.1975', '5 А, 6 A, 8 А, 9 А', 'Математика'),
             Teacher('Петров', 'Пётр', 'Андреевич', '24.04.1955', '5 А, 10 А', 'Русский язык'),
-            Teacher('Языкова', 'Тамара', 'Павловна', '30.03.1980', '5 А, 7 В, 9 А', 'Литература'),
-            Teacher('Форсункина', 'Аврора', 'Генадьевна', '03.10.1977', '6 Б, 8 А', 'Алгебра'),
-            Teacher('Черпаков', 'Валерий', 'Петрович', '10.11.1966', '7 В, 8 А', 'ОБЖ'),
-            Teacher('Данилин', 'Робер', 'Владиславович', '29.02.1988', '7 В, 10 А', 'Физ-ра'),
+            Teacher('Языкова', 'Тамара', 'Павловна', '30.03.1980', '5 А, 7 A, 9 А', 'Литература'),
+            Teacher('Форсункина', 'Аврора', 'Генадьевна', '03.10.1977', '6 A, 8 А', 'Алгебра'),
+            Teacher('Черпаков', 'Валерий', 'Петрович', '10.11.1966', '7 A, 8 А', 'ОБЖ'),
+            Teacher('Данилин', 'Роберт', 'Владиславович', '29.02.1988', '7 A, 10 А', 'Физ-ра'),
             ]
 
-# schoool = [School('5 А', sub['5 А']),
-#            School('6 Б', sub['6 Б']),
-#            School('7 В', sub['7 В']),
-#            School('8 А', sub['8 А']),
-#            School('9 А', sub['9 А']),
-#            School('10 А', sub['10 А'])
-#            ]
 
+"""Все для класса Shcool"""
+
+school = School(classroom, subject)
 
 for i in students:
-    print(i.full_name)
+    print(i.cl_st('5 А'))
 
-print(School.subject['Математика'])
- # print(subject.School['Математика'])
+for i in students:
+    print(i.sub())
+
 # for i in students:
-#     if i.surname == 'Забулдыгин':
-        # print(i.subject)
-# print(School.wal)
+#     print(i.full_name())
+#
+# for i in teachers:
+#     print(i.full_name)
+#
+# print('Всего классов в данной школе', school.full_clas())
