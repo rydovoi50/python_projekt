@@ -2,7 +2,8 @@
       2: '''Получить список всех учеников в указанном классе\n(каждый ученик отображается в формате "Фамилия И.О.")''',
       3: '''Получить список всех предметов указанного ученика\n(Ученик --> Класс --> Учителя --> Предметы)''',
       4: 'Узнать ФИО родителей указанного ученика',
-      5: 'Получить список всех Учителей, преподающих в указанном классе'}
+      5: 'Получить список всех Учителей, преподающих в указанном классе',
+      6: ''}
 
 
 class MySchool:
@@ -12,6 +13,7 @@ class MySchool:
         self.students = []
         self.teachers.extend(teachers)
         self.students.extend(students)
+        # print(self.students)
 
     def all_classes(self):  # 1 задание
         classrooms = []
@@ -21,7 +23,7 @@ class MySchool:
             classrooms.append(x.classroom)
         return list(set(classrooms))
 
-    def stud_for_class(self, number=None):  # 2 задание
+    def stud_for_class(self, number=str):  # 2 задание
         cl = []
         for x in self.students:
             if x.classroom == number:
@@ -139,10 +141,13 @@ s = MySchool('СШ №4', teachers=teachers, students=students)
 print(wk(1))
 print(s.all_classes())
 print(wk(2))
-print(s.stud_for_class('5 А'))
+# print(s.stud_for_class('5 А'))
+print(s.stud_for_class(number='6 A'))
 print(wk(3))
 print(s.stud_subj('Иванов', 'Иван', 'Иванович'))
 print(wk(4))
 print(s.fio_parents('Иванов', 'Иван', 'Иванович'))
 print(wk(5))
 print(s.class_teachers('5 А'))
+print(wk(6))
+print(s)
