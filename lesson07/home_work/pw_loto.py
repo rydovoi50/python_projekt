@@ -1,6 +1,7 @@
 import random
 
 
+
 class Card:
     def __init__(self, id=''):
         self.ad = id
@@ -9,11 +10,9 @@ class Card:
         self.b = sorted(num[5: 10])  # + ['--' for x in range(4)]
         self.c = sorted(num[10:])  # + ['--' for x in range(4)]
         self.ls = [self.a, self.b, self.c]
-        self.ls_rand = [random.randint(0, 9) for _ in range(0, 4)]
         self.str_a = self.lqs(self.a)
         self.str_b = self.lqs(self.b)
         self.str_c = self.lqs(self.c)
-        print(self.ls_rand)
 
     def exlude(self, number=None):
         for _ in self.ls:
@@ -40,8 +39,9 @@ class Card:
 
     def lqs(self, lis):
         lis1 = lis.copy()
-        for i in self.ls_rand:
-            lis1.insert(i, '--')
+        for i in range(4):
+            _ = random.randint(0, 9)
+            lis1.insert(_, '--')
         y = [str(x) for x in lis1]
         for x in y:
             if len(x) == 1:
