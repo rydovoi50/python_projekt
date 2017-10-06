@@ -35,7 +35,7 @@ class Card:
         y = x.replace(' ', '')
         x = y.replace('-', '')
         z = x.replace('x', '')
-        print(len(z))
+        # print(len(z))
         return len(z)
         # if z.isdigit() == True:
         #     pass
@@ -75,15 +75,16 @@ class Loto:
         while True:
             # self.user.test()  # проверяет на оставшееся количество цифр карточку пользователя
             # self.comp.test()  # проверяет на оставшееся количество цифр карточку компьютера
-            print(self.user.abc, self.user.test(), 11111)
+            # print(self.user.abc, self.user.test(), 11111)
+            print('\n')
             self.keg()          # выбрасывает боченок и возвращает цифру
             print(self.user)    # выводит карточку на экран
             print(self.comp)    # выводит карточку на экран
-            print(self.user.abc, self.user.test(), 22222)
+            # print(self.user.abc, self.user.test(), 22222)
             self.finish()
             self.y_n()          # спрашивает зачеркнуть ли цифру
             self.answere()      # сверяет ответ пользователя и зачеркивает цифру
-            print(self.user.abc, self.user.test(), 333333)
+            # print(self.user.abc, self.user.test(), 333333)
 
     def keg(self):
         self.numb = self.ls_keg.pop()
@@ -94,18 +95,21 @@ class Loto:
         x = self.user.exclude(self.numb)
         if self.answer == 'y' and x:
             pass
-        # elif self.answer == 'y' and not x:
-        #     print('У Вас нет такой цифры на карточке')
-        #     sys.exit()
-        # elif self.answer == 'n' and not x:
-        #     pass
-        # elif self.answer == 'n' and x:
-        #     print('На Вашей карточке была такая цифра')
-        #     sys.exit()
-        # else:
-        #     print(self.user.exclude(self.numb))
-        #     print('Вы лузер')
-        #     sys.exit()
+        elif self.answer == 'y' and not x:
+            print('У Вас нет такой цифры на карточке')
+            input('Нажмите ENTER для выхода')
+            sys.exit()
+        elif self.answer == 'n' and not x:
+            pass
+        elif self.answer == 'n' and x:
+            print('На Вашей карточке была такая цифра')
+            input('Нажмите ENTER для выхода')
+            sys.exit()
+        else:
+            print(self.user.exclude(self.numb))
+            print('Вы лузер')
+            input('Нажмите ENTER для выхода')
+            sys.exit()
 
     def y_n(self):
         self.answer = input('Зачеркнуть цифру (yes / no): \n')
@@ -115,12 +119,36 @@ class Loto:
         comp = self.comp.test()
         if not user and not comp:
             print('Ничья')
+            input('Нажмите ENTER для выхода')
             sys.exit()
         elif comp == 0:
-            print('Победил компьютер')
+            print(r'''
+            
+                             ____                    ||    _____      ____    ________
+                ||     ||  ||    ||  \\    //        ||  ||     ||  ||           ||
+                ||     ||  ||    ||  \\    //        ||  ||     ||  ||___        ||
+                ||     ||  ||    ||  \\    //        ||  ||     ||       ||      ||
+                ||_____||  ||____||  \\____//        ||  ||_____||   ____||      ||
+                      //            
+                     //
+                  __//
+                            
+           
+            ''')
+            input('Нажмите ENTER для выхода')
             sys.exit()
         elif user == 0:
-            print('Вы победили')
+            print(r'''
+                         ____                                      00    
+            ||     ||  ||    ||  \\    //       \\            //   ||   ||\\   ||
+            ||     ||  ||    ||  \\    //        \\          //    ||   || \\  ||
+            ||     ||  ||    ||  \\    //         \\  //\\  //     ||   ||  \\ ||
+            ||_____||  ||____||  \\____//          \\//  \\//      ||   ||   \\||
+                  //            
+                 //
+              __//
+            ''')
+            input('Нажмите ENTER для выхода')
             sys.exit()
 
 
