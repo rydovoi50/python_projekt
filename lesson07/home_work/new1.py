@@ -1,5 +1,6 @@
 import random
 import sys
+
 class Card:
 
     def __init__(self, ed=''):
@@ -18,29 +19,29 @@ class Card:
             _ = random.randint(0, 9)
             self.c.insert(_, '--')
         self.abc = [self.a, self.b, self.c]
-        self.st_abc = [self.dash(self.a), self.dash(self.b), self.dash(self.c)]
-        # self.dash_a = self.dash(self.a)
-        # self.dash_b = self.dash(self.b)
-        # self.dash_c = self.dash(self.c)
-        # self.abc = [self.dash(self.a), self.dash(self.b), self.dash(self.c)]
+        self.card_text()
+
+    def card_text(self):
+        self.args = [self.ed, self.dash(self.a), self.dash(self.b), self.dash(self.c), '']
+        return self.args
 
     def __str__(self,):
-        args = [self.ed, self.dash(self.a), self.dash(self.b), self.dash(self.c), '']
-        return '{:-^26}\n{}\n{}\n{}\n{:-^26}'.format(*args)
+        x = self.card_text()
+        return '{:-^26}\n{}\n{}\n{}\n{:-^26}'.format(*x)
 
-    def test(self, ed=''):
-        for i in self.st_abc:
-            x = str(i)
-            y = x.replace(' ', '')
-            x = y.replace('-', '')
-            if x.isdigit() == True:
-                print(1+1)
-                print(x.isdigit())
-            elif x.isdigit() == False:
-                print(2+2)
-                print(x.isdigit())
-                print('Победил {}'.format(ed))
-                sys.exit()
+
+    def test(self):
+        x = str(self.args[1] + self.args[2] + self.args[3])
+        y = x.replace(' ', '')
+        x = y.replace('-', '')
+        z = x.replace('x', '')
+        print(len(z))
+        return len(z)
+        # if z.isdigit() == True:
+        #     pass
+        # elif z.isdigit() != True:
+        #     print('Победил {}'.format(self.ed))
+        #     sys.exit()
 
     def dash(self, ls):
         x = [str(i) for i in ls]
@@ -48,10 +49,6 @@ class Card:
             if len(i) == 1:
                 z = x.index(i)
                 x[z] = i + ' '
-        # ls1 = ls.copy()
-        # for i in range(4):
-        #     _ = random.randint(0, 9)
-        #     ls1.insert(_, '--')
         return ' '.join(x)
 
     def exclude(self, numb):
@@ -60,19 +57,9 @@ class Card:
                 if _ == numb:
                     z = i.index(_)
                     i[z] = 'xx'
-                # else:
-                #     print('Вы проиграли')
-                #     sys.exit()
-        self.abc = [self.a, self.b, self.c]
-
-    def exclude_no(self, numb):
-        for i in self.abc:
-            for _ in i:
-                if _ == numb:
-                    print('Вы проиграли')
-                    sys.exit()
-                else:
-                    pass
+                    self.abc = [self.a, self.b, self.c]
+                    return True
+        return False
 
 
 class Loto:
@@ -82,39 +69,59 @@ class Loto:
         random.shuffle(self.ls_keg)
         self.user = Card('Пользователь')
         self.comp = Card('Компьютер')
-        # self.test1 = Card('Пользователь')
-        # self.test2 = Card('Компьютер')
         self.play()
-        # print(self.ls_keg)
 
     def play(self):
         while True:
-            self.user.test('Пользователь')
-            self.comp.test('Компьютер')
-            self.keg()
-            print(self.user)
-            print(self.comp)
-            self.y_n()
-            self.answere()
+            # self.user.test()  # проверяет на оставшееся количество цифр карточку пользователя
+            # self.comp.test()  # проверяет на оставшееся количество цифр карточку компьютера
+            print(self.user.abc, self.user.test(), 11111)
+            self.keg()          # выбрасывает боченок и возвращает цифру
+            print(self.user)    # выводит карточку на экран
+            print(self.comp)    # выводит карточку на экран
+            print(self.user.abc, self.user.test(), 22222)
+            self.finish()
+            self.y_n()          # спрашивает зачеркнуть ли цифру
+            self.answere()      # сверяет ответ пользователя и зачеркивает цифру
+            print(self.user.abc, self.user.test(), 333333)
 
     def keg(self):
         self.numb = self.ls_keg.pop()
         print('Новый бочонок: {} (осталоь {})'.format(self.numb, len(self.ls_keg)))
-        # print(type(self.numb))
 
     def answere(self):
-        # try:
         self.comp.exclude(self.numb)
-        # except:
-        #     pass
-        if self.answer == 'y':
-            self.user.exclude(self.numb)
-        else:
-            self.user.exclude_no(self.numb)
+        x = self.user.exclude(self.numb)
+        if self.answer == 'y' and x:
             pass
+        # elif self.answer == 'y' and not x:
+        #     print('У Вас нет такой цифры на карточке')
+        #     sys.exit()
+        # elif self.answer == 'n' and not x:
+        #     pass
+        # elif self.answer == 'n' and x:
+        #     print('На Вашей карточке была такая цифра')
+        #     sys.exit()
+        # else:
+        #     print(self.user.exclude(self.numb))
+        #     print('Вы лузер')
+        #     sys.exit()
 
     def y_n(self):
         self.answer = input('Зачеркнуть цифру (yes / no): \n')
+
+    def finish(self):
+        user = self.user.test()
+        comp = self.comp.test()
+        if not user and not comp:
+            print('Ничья')
+            sys.exit()
+        elif comp == 0:
+            print('Победил компьютер')
+            sys.exit()
+        elif user == 0:
+            print('Вы победили')
+            sys.exit()
 
 
 loto = Loto()
