@@ -18,21 +18,51 @@ class Shcool:
     def classroom(self):
         self.room = []
         for i in self.student:
-            print(i)
-            self.room.extend(i.classroom)
+            self.room.append(i.classroom_st)
         for i in self.teacher:
-            self.room.extend(i.classroom)
+            self.room.extend(i.classroom_t)
         return set(self.room)
 
     '''Получаем список всех учеников в классе'''
     def list_of_student_in_the_class(self, num):
         list_student = []
         for i in self.student:
-            if i.classroom == num:
-                print(i.st_fio0)
-                # list_student.append(i.st_fio)
+            if i.classroom_st == num:
+                list_student.append(i.st_fio)
         return list_student
-        pass
+
+    '''Функия для получения списков (Ученик --> Класс --> Учителя --> Предметы) заданного ученика'''
+    def mission_3(self, fio):
+        self.guru = []
+        self.object = []
+        for i in self.student:
+            if i.st_fio == fio:
+                self.room1 = i.classroom_st
+        for x in self.teacher:
+            for _ in x.classroom_t:
+                if _ == self.room1:
+                    self.guru.append(x.fio)
+                    self.object.append(x.subject)
+        return 'Данный ученик: \"{}\", учится в \"{}\" классе. \nУ него преподают: {}, \nТакие предметы: {}'\
+            .format(fio, self.room1, self.guru, self.object)
+
+    '''Список родителей данного ученика'''
+    def parents(self, fio):
+        parents_st = []
+        for i in self.student:
+            if i.st_fio == fio:
+                parents_st.append(i.mama)
+                parents_st.append(i.papa)
+        return 'У ученика \'{}\' родители: {}'.format(fio, parents_st)
+
+    '''Список учетелей преподающих в заданном классе'''
+    def teacher_classroom(self, numb):
+        self.list_teacher = []
+        for i in self.teacher:
+            for _ in i.classroom_t:
+                if _ == numb:
+                    self.list_teacher.append(i.fio)
+        return 'В \'{}\' классе преподают: {}'.format(numb, self.list_teacher)
 
 
 class People:
@@ -46,16 +76,18 @@ class People:
 
 class Teacher(People):
     def __init__(self, *args):
-        People.__init__(self, surname, name, middle_name)
-        self.classroom = []
-        self.classroom.extend([x for x in args[4:]])
+        People.__init__(self, *args[0:3])
+        self.classroom_t = []
+        self.classroom_t.extend([x for x in args[4:]])
+        self.subject = args[3]
 
 
 class Student(People):
     def __init__(self, *args):
-        People.__init__(self, surname, name, middle_name)
-        self.classroom = []
-        self.classroom.extend([x for x in args[4:5]])
+        People.__init__(self, *args[0:3])
+        self.classroom_st = args[4]
+        self.mama = args[5]
+        self.papa = args[6]
 
 
 students = [Student('Иванов', 'Иван', 'Иванович', '20.02.2003', '5 А', 'Иванова Зинаида Петровна',
@@ -95,3 +127,9 @@ print(separator(1))
 print(s.classroom())
 print(separator(2))
 print(s.list_of_student_in_the_class('5 А'))
+print(separator(3))
+print(s.mission_3('Лисина А. И.'))
+print(separator(4))
+print(s.parents('Верещагин Д. А.'))
+print(separator(5))
+print(s.teacher_classroom('8 А'))
