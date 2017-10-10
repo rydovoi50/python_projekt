@@ -12,44 +12,42 @@
 # каждый работник получал строку из файла
 
 
-# class Hours:
-#     def __init__(self, data):
+class Hours:
+    def __init__(self, args):
         # self.read = args
-        # self.h_name = ' '.join(data[0:2])
-        # self.hours_worked = int(data[2])
+        self.h_name = ' '.join(args[0:2])
+        self.hours_worked = int(args[2])
         # print(self.h_name)
         # print(self.hours_worked)
         # print('q = ', self.read)
 
 
-class Worker:
-    def __init__(self, args, data=None):
-        # Hours.__init__(self, data)
+class Worker(Hours):
+    def __init__(self, args):
+        Hours.__init__(self, args)
         self.name = ' '.join(args[0:2])
         self.pay = int(args[2])
         self.post = args[3]
         self.standard_watches = int(args[4])
         # print(self.name)
         # print(self.pay)
-        # print(self.proba(hours))
+        print(self.proba())
 
-    def proba(self, args):
-        self.h_name = ' '.join(args[0:2])
-        self.hours_worked = int(args[2])
+    def proba(self,):
         if self.h_name == self.name:
-            self.a = self.pay / self.standard_watches * self.hours_worked
+            print('{} == {}'.format(self.h_name, self.name))
+            pay = self.pay / self.standard_watches * self.hours_worked
             print("{} / {} * {}".format(self.pay, self.standard_watches, self.hours_worked))
-        return '{} -> {}'.format(self.name, self.a)
+        return '{} -> {}'.format(self.name, pay)
 
+
+with open('.\\data\\hours_of', 'r', encoding='UTF=8') as file_2:
+    b = file_2.readlines()[1:]
+    for x in b:
+        Hours(x.split())
 
 with open('.\\data\\workers', 'r', encoding='UTF-8') as file_1:
     a = file_1.readlines()[1:]
     for i in a:
         Worker(i.split())
 
-with open('.\\data\\hours_of', 'r', encoding='UTF=8') as file_2:
-    b = file_2.readlines()[1:]
-    for x in b:
-        hours = x.split()
-
-print(Worker.proba(hours))
